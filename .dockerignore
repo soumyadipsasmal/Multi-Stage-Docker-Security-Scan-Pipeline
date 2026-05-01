@@ -1,0 +1,27 @@
+# Dependencies (will be reinstalled clean in Docker)
+node_modules
+npm-debug.log
+
+# Test files — NEVER ship to production image
+tests/
+coverage/
+*.test.js
+jest.config.js
+
+# Git & CI files
+.git
+.gitignore
+.github
+
+# Docs
+README.md
+*.md
+
+# Env files — never bake secrets into an image!
+.env
+.env.*
+
+# Editor/OS
+.DS_Store
+.vscode
+*.log
