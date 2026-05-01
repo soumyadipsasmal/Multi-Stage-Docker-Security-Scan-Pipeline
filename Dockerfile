@@ -3,7 +3,7 @@
 # Install ALL dependencies (including devDeps)
 # This stage is discarded in the final image
 # ──────────────────────────────────────────────
-FROM node:20-alpine AS deps
+FROM node:22-alpine AS deps
 
 WORKDIR /app
 
@@ -30,7 +30,7 @@ RUN npm test
 # STAGE 3: builder
 # Build/prepare production assets
 # ──────────────────────────────────────────────
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -44,7 +44,7 @@ RUN npm ci --omit=dev
 # STAGE 4: production  ← this is the final image
 # Minimal, hardened, no dev tools
 # ──────────────────────────────────────────────
-FROM node:20-alpine AS production
+FROM node:22-alpine AS production
 
 # Security best practice: don't run as root
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
